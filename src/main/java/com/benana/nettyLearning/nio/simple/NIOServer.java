@@ -1,10 +1,13 @@
-package com.benana.nettyLearning.nio;
+package com.benana.nettyLearning.nio.simple;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.*;
-import java.util.Arrays;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -81,7 +84,7 @@ public class NIOServer {
                         byteBuffer.flip();
                         byte[] bytes = new byte[byteBuffer.remaining()];
                         byteBuffer.get(bytes);
-                        String message = new String(bytes, "UTF-8");
+                        String message = new String(bytes, StandardCharsets.UTF_8);
                         System.out.println("收到客户端（" + socketChannel.hashCode() + "）发送的信息：" + message);
                         byteBuffer.clear();
                     }
