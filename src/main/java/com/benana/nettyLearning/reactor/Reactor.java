@@ -12,6 +12,7 @@ import java.util.Set;
 
 /**
  * Reactor模式
+ * Reactor负责监听IO事件，当有事件发生时，Reactor会将事件分发给对应的Handler进行处理。
  *
  * @author Benana
  * @date 2023/3/28 21:33
@@ -56,6 +57,9 @@ public class Reactor implements Runnable {
         }
     }
 
+    /**
+     * 当有新的连接请求时，Acceptor会将SocketChannel注册到Selector中，然后创建一个新的Handler来处理该连接的读写操作。
+     */
     class Acceptor implements Runnable {
         @Override
         public void run() {
@@ -70,6 +74,9 @@ public class Reactor implements Runnable {
         }
     }
 
+    /**
+     * Handler是具体的业务处理逻辑，负责读取和处理数据，然后将处理结果返回给客户端。
+     */
     static class Handler implements Runnable {
 
         private final SocketChannel socketChannel;
