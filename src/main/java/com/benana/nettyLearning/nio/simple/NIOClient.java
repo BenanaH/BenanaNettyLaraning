@@ -30,5 +30,6 @@ public class NIOClient {
         //socketChannel.write(ByteBuffer.wrap("Hello!".getBytes()));
         byte[] bytes = "Hello!".getBytes(StandardCharsets.UTF_8);
         socketChannel.write(ByteBuffer.wrap(bytes));
+        System.in.read();
     }
 }
